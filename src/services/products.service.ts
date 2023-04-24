@@ -7,6 +7,10 @@ class ProductService {
     this.model = new ProductModel();
   }
 
+  async getAll(): Promise<Product[]> {
+    return this.model.getAll();
+  }
+
   async create(product: Product): Promise<Product> {
     return this.model.create(product);
   }
