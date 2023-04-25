@@ -29,8 +29,10 @@ export default class OrderModel {
   }
 
   async create(userId: number): Promise<Order> {
-    const [{ insertId }] = await this.connection.execute<(ResultSetHeader)
-    >('INSERT INTO Trybesmith.orders (user_id) VALUES (?)', [userId]);
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+      [userId],
+    );
     return { id: insertId, userId };
   }
 
