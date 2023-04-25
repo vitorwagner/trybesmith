@@ -15,6 +15,7 @@ export function createToken(user: User) {
         username: user.username,
         vocation: user.vocation,
         level: user.level,
+        id: user.id,
       },
     },
     secret,
