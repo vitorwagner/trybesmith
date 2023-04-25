@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import UserService from '../services/users.service';
 import { createToken } from '../utils/jwt.utils';
 
@@ -8,6 +8,7 @@ class UsersController {
   constructor(userService = new UserService()) {
     this.userService = userService;
     this.create = this.create.bind(this);
+    this.login = this.login.bind(this);
   }
 
   async create(req: Request, res: Response): Promise<void> {
@@ -15,6 +16,17 @@ class UsersController {
     const token = createToken(user);
 
     res.status(201).json({ token });
+  }
+
+  async login(req: Request, res: Response, next: NextFunction): Promise<void> {
+    const { username, password } = req.body;
+    try {
+      const user = await this.userService.login(username, password);
+      const token = createToken(user);
+      res.status(200).json({ token });
+    } catch (err) {
+      next(err);
+    }
   }
 }
 
