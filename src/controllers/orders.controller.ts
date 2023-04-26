@@ -17,7 +17,7 @@ class OrdersController {
   }
 
   async create(req: Request, res: Response): Promise<void> {
-    const order = await this.ordersService.create(res.locals.user.data.id, req.body.productsIds);
+    const order = await this.ordersService.create(res.locals.user.id, req.body.productsIds);
 
     res.status(201).json({ userId: order.userId, productsIds: req.body.productsIds });
   }

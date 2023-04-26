@@ -25,13 +25,12 @@ export default class UserModel {
     return { id: insertId, ...user };
   }
 
-  async login(username: string, password: string): Promise<User> {
-    const [[userLogin]] = await this.connection.execute<(
-    User & RowDataPacket)[]>(
-      'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?',
-      [username, password],
-      );
+  async login(username: string): Promise<User | undefined> {
+    const [[userLogin]] = await this.connection.execute<RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.users WHERE username = ?',
+      [username],
+    );
 
-    return userLogin;
+    return userLogin as User | undefined;
   }
 }

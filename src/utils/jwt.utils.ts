@@ -11,12 +11,10 @@ const secret: Secret = process.env.JWT_SECRET || 'yourSecret';
 export function createToken(user: User) {
   return jwt.sign(
     {
-      data: {
-        username: user.username,
-        vocation: user.vocation,
-        level: user.level,
-        id: user.id,
-      },
+      username: user.username,
+      vocation: user.vocation,
+      level: user.level,
+      id: user.id,
     },
     secret,
     jwtConfig,
