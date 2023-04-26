@@ -17,30 +17,12 @@ class UsersController {
 
     res.status(201).json({ token });
   }
-
-  // async login(req: Request, res: Response, next: NextFunction): Promise<void> {
-  //   const { username, password } = req.body;
-  //   try {
-  //     const user = await this.userService.login(username, password);
-  //     const token = createToken(user);
-  //     res.status(200).json({ token });
-  //   } catch (err) {
-  //     next(err);
-  //   }
-  // }
   
   async login(req: Request, res: Response): Promise<void> {
     const { username, password } = req.body;
     const token = await this.userService.login(username, password);
     res.status(200).json({ token });
   }
-
-  // async login(req: Request, res: Response): Promise<void> {
-  //   const { username, password } = req.body;
-  //   const user = await this.userService.login(username, password);
-  //   const token = createToken(user);
-  //   res.status(200).json({ token });
-  // }
 }
 
 export default UsersController;
