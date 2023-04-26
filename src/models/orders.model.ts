@@ -19,13 +19,14 @@ export default class OrderModel {
   }
 
   async getAll(): Promise<Order[]> {
-    const [orders] = await this.connection.execute<(Order & RowDataPacket)[]>(
+    const [orders] = await this.connection.execute<RowDataPacket[]>(
       `SELECT o.id, o.user_id AS userId, 
       JSON_ARRAYAGG(p.id) as productsIds
       FROM Trybesmith.orders AS o
       JOIN Trybesmith.products AS p ON p.order_id = o.id
-      GROUP BY o.id`);
-    return orders;
+      GROUP BY o.id`,
+    );
+    return orders as Order[];
   }
 
   async create(userId: number): Promise<Order> {
