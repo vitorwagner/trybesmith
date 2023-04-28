@@ -1,10 +1,14 @@
-# Recipes App
+# Trybesmith
 Projeto da [Trybe](https://www.betrybe.com/).
 
 ## 💻 Projeto
 
 ## 🚀 Tecnologias
 > Este projeto foi desenvolvido com as seguintes tecnologias:
+
+- Node.js
+- MySQL
+- TypeScript
 
 ## 💬 Contato
 
