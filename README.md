@@ -9,6 +9,7 @@ Projeto da [Trybe](https://www.betrybe.com/).
 - Node.js
 - MySQL
 - TypeScript
+- Docker
 
 ## 💬 Contato
 
